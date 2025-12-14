@@ -1,0 +1,11 @@
+[package]
+name = "jsonwebtoken-botan"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+botan = { git = "https://github.com/arckoor/botan-rs", branch = "rsa-pkcs1-pubkey" }
+jsonwebtoken = { git = "https://github.com/arckoor/jsonwebtoken", branch = "custom-provider" }
+
+[dev-dependencies]
+serde = "1.0.228"
