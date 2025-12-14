@@ -44,3 +44,22 @@ fn test_eddsa() -> Result<(), botan::Error> {
 
     Ok(())
 }
+
+#[test]
+#[should_panic]
+fn test_no_default_provider() {
+    let exp = SystemTime::now()
+        .duration_since(UNIX_EPOCH)
+        .unwrap()
+        .as_secs()
+        + 100;
+
+    let claims = Claims {
+        sub: "me".to_string(),
+        exp,
+    };
+
+    let encoding_key = EncodingKey::from_secret(b"secret");
+
+    let _ = encode(&Header::new(Algorithm::HS256), &claims, &encoding_key);
+}
